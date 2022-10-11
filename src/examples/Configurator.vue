@@ -179,9 +179,15 @@
 <script>
 import { mapMutations } from "vuex";
 import { activateDarkMode, deactivateDarkMode } from "@/assets/js/dark-mode";
+import LocalStorageService from "@/services/LocalStorageService";
 export default {
   name: "configurator",
   props: ["toggle"],
+  data(){
+    return {
+      loc: new LocalStorageService()
+    }
+  },
   methods: {
     ...mapMutations(["navbarMinimize", "sidebarType", "navbarFixed"]),
     sidebarColor(color = "success") {
@@ -204,11 +210,13 @@ export default {
         this.$store.state.darkMode = false;
         this.$store.state.sidebarType = "bg-white";
         deactivateDarkMode();
+        this.loc.deactivateDarkMode();
         return;
       } else {
         this.$store.state.darkMode = true;
         this.$store.state.sidebarType = "bg-default";
         activateDarkMode();
+        this.loc.activateDarkMode();
       }
     },
     sidenavTypeOnResize() {

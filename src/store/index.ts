@@ -25,19 +25,16 @@ export default createStore({
     navbarMinimize(state) {
       const sidenav_show = document.querySelector(".g-sidenav-show");
 
-      // @ts-ignore
-      if (sidenav_show.classList.contains("g-sidenav-hidden")) {
-        // @ts-ignore
-        sidenav_show.classList.remove("g-sidenav-hidden");
-        // @ts-ignore
-        sidenav_show.classList.add("g-sidenav-pinned");
-        state.isPinned = true;
-      } else {
-        // @ts-ignore
-        sidenav_show.classList.add("g-sidenav-hidden");
-        // @ts-ignore
-        sidenav_show.classList.remove("g-sidenav-pinned");
-        state.isPinned = false;
+      if (sidenav_show){
+        if (sidenav_show.classList.contains("g-sidenav-hidden")) {
+          sidenav_show.classList.remove("g-sidenav-hidden");
+          sidenav_show.classList.add("g-sidenav-pinned");
+          state.isPinned = true;
+        } else {
+          sidenav_show.classList.add("g-sidenav-hidden");
+          sidenav_show.classList.remove("g-sidenav-pinned");
+          state.isPinned = false;
+        }
       }
     },
     sidebarType(state, payload) {
